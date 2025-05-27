@@ -14,6 +14,9 @@ import {
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
+  const handleNavClick = () => {
+  if (window.innerWidth < 768) setIsOpen(false); // Only auto-close on small screens
+};
   return (
     <>
       <div className="md:hidden p-4 bg-white shadow flex justify-between items-center">
@@ -44,36 +47,36 @@ export default function Sidebar() {
             <nav className="space-y-2">
               <div>
                 <p className="text-slate-400 mx-2 text-[12px]">General</p>
-                <Link to="/" className="block p-2 rounded hover:bg-gray-100">
+                <Link to="/" onClick={handleNavClick} className="block p-2 rounded hover:bg-gray-100">
                   <GridViewRoundedIcon sx={{ fontSize: 20 }} className="text-indigo-500" /><span className="m-[10px] text-indigo-500 font-bold">Dashboard</span>
                 </Link>
-                <Link to="/history" className="block p-2 rounded hover:bg-gray-100">
+                <Link to="/history" onClick={handleNavClick} className="block p-2 rounded hover:bg-gray-100">
                   <ManageHistoryOutlinedIcon sx={{ fontSize: 20 }} /> <span className="m-[10px]">History</span>
                 </Link>
-                <Link to="/calendar" className="block p-2 rounded hover:bg-gray-100">
+                <Link to="/calendar" onClick={handleNavClick} className="block p-2 rounded hover:bg-gray-100">
                   <CalendarMonthTwoToneIcon sx={{ fontSize: 20 }} /> <span className="m-[10px]">Calendar</span>
                 </Link>
-                <Link to="/appointments" className="block p-2 rounded hover:bg-gray-100">
+                <Link to="/appointments" onClick={handleNavClick} className="block p-2 rounded hover:bg-gray-100">
                   <AddBoxTwoToneIcon sx={{ fontSize: 20 }} /> <span className="m-[10px]">Appointments</span>
                 </Link>
-                <Link to="/statistics" className="block p-2 rounded hover:bg-gray-100">
+                <Link to="/statistics" onClick={handleNavClick} className="block p-2 rounded hover:bg-gray-100">
                   <DataExplorationTwoToneIcon sx={{ fontSize: 20 }} /> <span className="m-[10px]">Statistics</span>
                 </Link>
               </div>
 
               <div>
                 <p className="text-slate-400 mx-2 text-[12px] mb-0 mt-5">Tools</p>
-                <Link to="/chat" className="block p-2 rounded hover:bg-gray-100">
+                <Link to="/chat" onClick={handleNavClick} className="block p-2 rounded hover:bg-gray-100">
                   <ChatTwoToneIcon sx={{ fontSize: 20 }} /> <span className="m-[10px]">Chat</span>
                 </Link>
-                <Link to="/support" className="block p-2 rounded hover:bg-gray-100">
+                <Link to="/support" onClick={handleNavClick} className="block p-2 rounded hover:bg-gray-100">
                   <CallTwoToneIcon sx={{ fontSize: 20 }} /> <span className="m-[10px]">Support</span>
                 </Link>
               </div>
             </nav>
           </div>
           <div className="mt-65">
-            <Link to="/settings" className="block p-2 rounded hover:bg-gray-100">
+            <Link to="/settings" onClick={handleNavClick} className="block p-2 rounded hover:bg-gray-100">
               <SettingsTwoToneIcon sx={{ fontSize: 20 }} /> <span className="">Setting</span>
             </Link>
           </div>
