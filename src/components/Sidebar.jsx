@@ -1,16 +1,19 @@
-// src/components/Sidebar.jsx
 import { useState } from "react";
-import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
-import ManageHistoryOutlinedIcon from '@mui/icons-material/ManageHistoryOutlined';
-import CalendarMonthTwoToneIcon from '@mui/icons-material/CalendarMonthTwoTone';
-import AddBoxTwoToneIcon from '@mui/icons-material/AddBoxTwoTone';
-import DataExplorationTwoToneIcon from '@mui/icons-material/DataExplorationTwoTone';
-import ChatTwoToneIcon from '@mui/icons-material/ChatTwoTone';
-import CallTwoToneIcon from '@mui/icons-material/CallTwoTone';
-import SettingsTwoToneIcon from '@mui/icons-material/SettingsTwoTone';
+import { Link } from "react-router-dom";
+import {
+  GridViewRounded as GridViewRoundedIcon,
+  ManageHistoryOutlined as ManageHistoryOutlinedIcon,
+  CalendarMonthTwoTone as CalendarMonthTwoToneIcon,
+  AddBoxTwoTone as AddBoxTwoToneIcon,
+  DataExplorationTwoTone as DataExplorationTwoToneIcon,
+  ChatTwoTone as ChatTwoToneIcon,
+  CallTwoTone as CallTwoToneIcon,
+  SettingsTwoTone as SettingsTwoToneIcon,
+} from "@mui/icons-material";
+
+
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
-
   return (
     <>
       <div className="md:hidden p-4 bg-white shadow flex justify-between items-center">
@@ -32,52 +35,50 @@ export default function Sidebar() {
         </button>
       </div>
 
-   {/* <aside className="bg-white shadow-md w-full md:w-55 p-6 md:block overflow-hidden"> */}
-    <aside className={`bg-blue-50 shadow-md w-full md:w-55 p-6 overflow-hidden md:block ${isOpen ? "block" : "hidden"}`}>
-      <div className="flex flex-col h-screen">
-        <div className="flex-1 overflow-y-auto pr-2">
-          <h2 className="text-teal-400 text-center font-bold mb-4 text-[19px]">
-            Health<span className="text-slate-800">care.</span>
-          </h2>
-          <nav className="space-y-2">
-            <div>
-              <p className="text-slate-400 mx-2 text-[12px]">General</p>
-              <a href="#" className="block p-2 rounded hover:bg-gray-100">
-                <GridViewRoundedIcon sx={{ fontSize: 20 }} className="text-indigo-500"/><span className="m-[10px] text-indigo-500 font-bold">Dashboard</span>
-              </a>
-              <a href="#" className="block p-2 rounded hover:bg-gray-100">
-                <ManageHistoryOutlinedIcon sx={{ fontSize: 20 }} /> <span className="m-[10px]">History</span>
-              </a>
-              <a href="#" className="block p-2 rounded hover:bg-gray-100">
-                <CalendarMonthTwoToneIcon sx={{ fontSize: 20 }} /> <span className="m-[10px]">Calendar</span>
-              </a>
-              <a href="#" className="block p-2 rounded hover:bg-gray-100">
-                <AddBoxTwoToneIcon sx={{ fontSize: 20 }} /> <span className="m-[10px]">Appointments</span>
-              </a>
-              <a href="#" className="block p-2 rounded hover:bg-gray-100">
-                <DataExplorationTwoToneIcon sx={{ fontSize: 20 }} /> <span className="m-[10px]">Statistics</span>
-              </a>
-            </div>
+      <aside className={`bg-blue-50 w-full md:w-60 p-6 overflow-hidden md:block ${isOpen ? "block" : "hidden"}`}>
+        <div className="flex flex-col">
+          <div className="flex-1 overflow-y-auto pr-2">
+            <Link to="/" ><span className="hidden md:block text-teal-400 text-center font-bold mb-4 text-[19px]">
+              Health<span className="text-slate-800">care.</span>
+            </span></Link>
+            <nav className="space-y-2">
+              <div>
+                <p className="text-slate-400 mx-2 text-[12px]">General</p>
+                <Link to="/" className="block p-2 rounded hover:bg-gray-100">
+                  <GridViewRoundedIcon sx={{ fontSize: 20 }} className="text-indigo-500" /><span className="m-[10px] text-indigo-500 font-bold">Dashboard</span>
+                </Link>
+                <Link to="/history" className="block p-2 rounded hover:bg-gray-100">
+                  <ManageHistoryOutlinedIcon sx={{ fontSize: 20 }} /> <span className="m-[10px]">History</span>
+                </Link>
+                <Link to="/calendar" className="block p-2 rounded hover:bg-gray-100">
+                  <CalendarMonthTwoToneIcon sx={{ fontSize: 20 }} /> <span className="m-[10px]">Calendar</span>
+                </Link>
+                <Link to="/appointments" className="block p-2 rounded hover:bg-gray-100">
+                  <AddBoxTwoToneIcon sx={{ fontSize: 20 }} /> <span className="m-[10px]">Appointments</span>
+                </Link>
+                <Link to="/statistics" className="block p-2 rounded hover:bg-gray-100">
+                  <DataExplorationTwoToneIcon sx={{ fontSize: 20 }} /> <span className="m-[10px]">Statistics</span>
+                </Link>
+              </div>
 
-            <div>
-              <p className="text-slate-400 mx-2 text-[12px] mb-0 mt-5">Tools</p>
-              <a href="#" className="block p-2 rounded hover:bg-gray-100">
-                <ChatTwoToneIcon sx={{ fontSize: 20 }} /> <span className="m-[10px]">Chat</span>
-              </a>
-              <a href="#" className="block p-2 rounded hover:bg-gray-100">
-                <CallTwoToneIcon sx={{ fontSize: 20 }} /> <span className="m-[10px]">Support</span>
-              </a>
-            </div>
-          </nav>
+              <div>
+                <p className="text-slate-400 mx-2 text-[12px] mb-0 mt-5">Tools</p>
+                <Link to="/chat" className="block p-2 rounded hover:bg-gray-100">
+                  <ChatTwoToneIcon sx={{ fontSize: 20 }} /> <span className="m-[10px]">Chat</span>
+                </Link>
+                <Link to="/support" className="block p-2 rounded hover:bg-gray-100">
+                  <CallTwoToneIcon sx={{ fontSize: 20 }} /> <span className="m-[10px]">Support</span>
+                </Link>
+              </div>
+            </nav>
+          </div>
+          <div className="mt-65">
+            <Link to="/settings" className="block p-2 rounded hover:bg-gray-100">
+              <SettingsTwoToneIcon sx={{ fontSize: 20 }} /> <span className="">Setting</span>
+            </Link>
+          </div>
         </div>
-        <div className="pb-9">
-          <a href="#" className="block p-2 rounded hover:bg-gray-100">
-            <SettingsTwoToneIcon sx={{ fontSize: 20 }} /> <span className="">Setting</span>
-          </a>
-        </div>
-      </div>
-    </aside>
-
+      </aside>
     </>
   );
 }

@@ -1,23 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
-import AccountBoxRoundedIcon from '@mui/icons-material/AccountBoxRounded';
-import AddBoxRoundedIcon from '@mui/icons-material/AddBoxRounded';
 import logo from '../assets/5.png';
-
+import WeeklyCalendar from "./WeeklyCalendar";
 const days = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"];
 const barColors = ["bg-gray-300", "bg-cyan-400", "bg-indigo-800"];
 const barHeights = [[40, 60, 45], [30, 70, 50], [20, 40, 30], [25, 55, 35], [30, 70, 40], [20, 35, 25], [25, 60, 30],];
 const bodyParts = [
   { name: "Healthy Head", top: "5%", left: "42%", width: "16%", height: "10%", icon: "🧠" },
   { name: "Healthy Chest", top: "15%", left: "36%", width: "28%", height: "15%", icon: "❤️" },
-  { name: "Healthy Abdomen", top: "32%", left: "38%", width: "24%", height: "12%" },
+  { name: "Healthy Abdomen", top: "32%", left: "38%", width: "24%", height: "12%", icon: " " },
   { name: "Healthy Left Arm", top: "18%", left: "20%", width: "12%", height: "38%", icon: "💪" },
   { name: "Healthy Right Arm", top: "18%", left: "68%", width: "12%", height: "38%", icon: "💪" },
   { name: "Healthy Left Leg", top: "48%", left: "40%", width: "10%", height: "45%", icon: "🦵" },
   { name: "Healthy Right Leg", top: "48%", left: "50%", width: "10%", height: "45%", icon: "🦵" },
 ];
-
-
 
 export default function Dashboard() {
   const [view, setView] = useState("This Week");
@@ -25,7 +21,7 @@ export default function Dashboard() {
 
   return (
     <main className="flex-1 min-h-screen">
-      <div className="grid grid-cols-1 lg:grid-cols-2 h-screen">
+      <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen lg:h-screen">
         {/* Left Section */}
         <section className="bg-white p-4 h-full flex flex-col">
           {/* search box */}
@@ -46,7 +42,7 @@ export default function Dashboard() {
                 placeholder="Search anything..."
                 required
               />
-              <button type="button" class="absolute end-2.5 bottom-2 text-indigo-500">
+              <button type="button" className="absolute end-2.5 bottom-2 cursor-pointer text-indigo-500">
                 <NotificationsRoundedIcon />
               </button>
             </div>
@@ -57,7 +53,7 @@ export default function Dashboard() {
             <h2 className="text-xl text-indigo-500 font-bold">Dashboard</h2>
             {/* Dropdown */}
             <div className="relative">
-              <select value={view} onChange={(e) => setView(e.target.value)} className="rounded-md px-3 py-1 text-sm">
+              <select value={view} onChange={(e) => setView(e.target.value)} className="rounded-md px-3 py-1 text-sm cursor-pointer">
                 <option value="This Week">This Week</option>
                 <option value="Month">Month</option>
                 <option value="Day">Day</option>
@@ -65,10 +61,11 @@ export default function Dashboard() {
             </div>
           </div>
           {/* image section */}
-          <div className="flex flex-col md:flex-row items-center gap-6 ml-4">
+          <div className="flex flex-col lg:flex-row items-center gap-6 lg:ml-4">
             {/* Image Section */}
-            <div className="flex justify-center w-[400px] items-center bg-indigo-50 rounded-2xl p-4">
-              <div className="relative h-[100px] md:h-[360px] w-auto">
+            <div className="flex justify-center items-center bg-indigo-50 rounded-2xl p-4 w-full max-w-[500px] mx-auto">
+
+              <div className="relative h-[300px] md:h-[360px] w-auto">
                 {/* Image */}
                 <img
                   src={logo}
@@ -100,15 +97,15 @@ export default function Dashboard() {
               </div>
             </div>
             {/* Details Card */}
-            <div className='w-[200px] mt-[-20px]'>
+            <div className="w-full sm:w-[430px] mt-[-20px]">
               <div className="w-full mb-2 bg-indigo-50 text-white rounded-2xl p-3">
                 <div className="flex items-center">
                   <span className="text-2xl">
-                    <i class="fa-solid fa-lungs text-red-400"></i>
+                    <i className="fa-solid fa-lungs text-red-400"></i>
                   </span>
                   <h6 className="text-lg text-black font-semibold mx-4">Lungs</h6>
                 </div>
-                <p className="text-[12px] mt-1 text-slate-400">Date: 26 Oct 2025</p>
+                <p className="text-[12px] mt-1 text-slate-400">Date: 26 May 2025</p>
                 <div className="w-full bg-white rounded-full h-2.5 mt-3 mb-1">
                   <div className="bg-orange-600 h-2.5 rounded-full" style={{ width: '70%' }}></div>
                 </div>
@@ -118,7 +115,7 @@ export default function Dashboard() {
                   <span className="text-2xl">🦷</span>
                   <h6 className="text-lg text-black font-semibold mx-4">Teeth</h6>
                 </div>
-                <p className="text-[12px] mt-1 text-slate-400">Date: 26 Oct 2025</p>
+                <p className="text-[12px] mt-1 text-slate-400">Date: 26 May 2025</p>
                 <div className="w-full bg-white rounded-full h-2.5 mt-3 mb-1">
                   <div className="bg-emerald-400 h-2.5 rounded-full" style={{ width: '80%' }}></div>
                 </div>
@@ -130,25 +127,25 @@ export default function Dashboard() {
                   </span>
                   <h6 className="text-lg text-black font-semibold mx-4">Bone</h6>
                 </div>
-                <p className="text-[12px] mt-1 text-slate-400">Date: 26 Oct 2025</p>
+                <p className="text-[12px] mt-1 text-slate-400">Date: 26 May 2025</p>
                 <div className="w-full bg-white rounded-full h-2.5 mt-3 mb-1">
                   <div className="bg-orange-400 h-2.5 rounded-full" style={{ width: '60%' }}></div>
                 </div>
               </div>
-              <p className='text-[12px] text-right mt-5'>Details <i class="fa-solid fa-arrow-right"></i></p>
+              <p className='text-[12px] text-right mt-5 cursor-pointer'>Details <i className="fa-solid fa-arrow-right"></i></p>
             </div>
           </div>
 
           {/* Activity chart */}
           <div className="p-6 bg-indigo-50 rounded-2xl mt-4 shadow-md w-full max-w-4xl mx-auto">
-            <div className="flex justify-between items-center mb-4">
+            <div className="flex justify-between items-center">
               <h2 className="text-lg font-semibold text-blue-900">Activity</h2>
               <span className="text-sm text-gray-500">3 appointment on this week</span>
             </div>
-            <div className="flex justify-between items-end h-40">
+            <div className="flex justify-between items-end">
               {days.map((day, i) => (
                 <div key={day} className="flex flex-col items-center space-y-1">
-                  <div className="flex flex-col justify-end items-center h-32 space-y-1">
+                  <div className="flex flex-col justify-end items-center h-23 space-y-1">
                     {barHeights[i].map((height, j) => (
                       <div
                         key={j}
@@ -157,7 +154,7 @@ export default function Dashboard() {
                       />
                     ))}
                   </div>
-                  <span className="text-xs text-gray-500 mt-1">{day}</span>
+                  <span className="text-xs text-gray-500 ">{day}</span>
                 </div>
               ))}
             </div>
@@ -167,43 +164,23 @@ export default function Dashboard() {
         {/* Right Section */}
         <section className="bg-indigo-50 p-4 h-full flex flex-col">
           {/* Top-right avatar and button */}
-          <div className="absolute top-4 right-4 flex items-center ">
-            {/* <button >
-              <AccountBoxRoundedIcon className='text-teal-400' />
+          <div className="top-4 gap-3 right-4 flex items-center ml-auto">
+            <button className="bg-cyan-500 rounded-[4px] cursor-pointer">
+              <i className="text-white fa-solid fa-user-tie fa-md m-[6px] mx-2"></i>
             </button>
-            <button>
-              <AddBoxRoundedIcon className='text-indigo-500' />
-            </button> */}
+            <button className="cursor-pointer">
+              <i className="text-indigo-500 fa-solid fa-square-plus fa-2xl"></i>
+            </button>
           </div>
+
 
           {/* Calendar */}
-          <div className="flex justify-between items-center mt-14">
-            <h2 className="text-md font-semibold m-3">May 2025</h2>
-            <div className="flex items-center gap-5">
-              <button className="text-lg"><i class="fa-solid fa-arrow-left"></i></button>
-              <button className="text-lg"><i class="fa-solid fa-arrow-right"></i></button>
-            </div>
-          </div>
 
-          <div className="grid grid-cols-7 text-center gap-4">
-            {["Mon", "Tue", "Wed", "Thurs", "Fri", "Sat", "Sun"].map((day) => (
-              <div key={day} className="font-medium text-[13px]">{day}</div>
-            ))}
 
-            {[25, 26, 27, 28, 29, 30, 31].map((date, index) => (
-              <div
-                key={date}
-                className={`m-[-10px] text-xl rounded-xl ${date === 26 ? "font-bold" : ""
-                  }`}
-              >
-                {date}
-              </div>
-            ))}
-          </div>
+          <WeeklyCalendar />
 
           {/* Time Slots */}
-          <div className="grid grid-cols-7 mt-6 m-1.5 text-center gap-4">
-            {/* <div className="grid grid-cols-6 mt-6 gap-6 text-sm"> */}
+          <div className="grid grid-cols-7 mt-3 m-1.5 text-center gap-4">
             {["10:00", "08:00", "12:00", "10:00", "----", "12:00", "09:00"].map(
               (time, index) => (
                 <div
@@ -217,7 +194,6 @@ export default function Dashboard() {
             )}
           </div>
           <div className="grid grid-cols-7 m-1.5 text-center gap-4">
-            {/* <div className="grid grid-cols-6 mt-6 gap-6 text-sm"> */}
             {["10:00", "09:00", "----", "11:00", "14:00", "14:00", "10:00"].map(
               (time, index) => (
                 <div
@@ -231,7 +207,6 @@ export default function Dashboard() {
             )}
           </div>
           <div className="grid grid-cols-7 m-1.5 text-center gap-4">
-            {/* <div className="grid grid-cols-6 mt-6 gap-6 text-sm"> */}
             {["12:00", "10:00", "13:00", "----", "16:00", "15:00", "11:00"].map(
               (time, index) => (
                 <div
@@ -304,7 +279,7 @@ export default function Dashboard() {
                     <div className="w-[200px] bg-violet-200 rounded-2xl p-4">
                       <div className="flex items-center justify-between">
                         <h6 className="font-semibold">Neurologist</h6>
-                        <span className="text-xl"><i class="fa-solid fa-user-doctor"></i></span>
+                        <span className="text-xl"><i className="fa-solid fa-user-doctor"></i></span>
                       </div>
                       <p className="text-gray-600 mt-1">16:00 PM</p>
                     </div>
